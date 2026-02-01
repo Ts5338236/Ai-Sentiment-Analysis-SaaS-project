@@ -1,0 +1,31 @@
+body {
+    background-color: #f8f9fa;
+    padding-bottom: 2rem;
+}
+
+.jumbotron {
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+pre {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #dee2e6;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.alert {
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+}

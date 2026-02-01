@@ -1,0 +1,73 @@
+<!-- sentiment-saas/templates/api.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>API Documentation</h2>
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h5 class="card-title">Generate API Key</h5>
+        <p>You need an API key to use our sentiment analysis API.</p>
+        <button id="generateKeyBtn" class="btn btn-primary">Generate API Key</button>
+        <div id="apiKeyResult" class="mt-3"></div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h5 class="card-title">API Endpoint</h5>
+        <p><strong>URL:</strong> <code>POST /api/analyze</code></p>
+        <p><strong>Headers:</strong></p>
+        <pre>Authorization: your_api_key_here
+Content-Type: application/json</pre>
+        
+        <p><strong>Request Body:</strong></p>
+        <pre>{
+    "text": "Your text to analyze here"
+}</pre>
+        
+        <p><strong>Response:</strong></p>
+        <pre>{
+    "text": "Your text to analyze here",
+    "sentiment": "POSITIVE|NEGATIVE|NEUTRAL",
+    "confidence": 0.95,
+    "credits_remaining": 99
+}</pre>
+        
+        <p><strong>cURL Example:</strong></p>
+        <pre>curl -X POST \
+  -H "Authorization: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{"text":"I love this product!"}' \
+  http://localhost:5000/api/analyze</pre>
+    </div>
+</div>
+
+<script>
+document.getElementById('generateKeyBtn').addEventListener('click', function() {
+    fetch('{{ url_for("generate_api_key") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('apiKeyResult').innerHTML = `
+            <div class="alert alert-success">
+                <strong>Your API Key:</strong> <code>${data.api_key}</code>
+                <p class="mt-2"><small>Save this key securely. It will not be shown again.</small></p>
+            </div>
+        `;
+    })
+    .catch(error => {
+        document.getElementById('apiKeyResult').innerHTML = `
+            <div class="alert alert-danger">
+                Error generating API key
+            </div>
+        `;
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!-- sentiment-saas/templates/analyze.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Analyze Text Sentiment</h2>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="text" class="form-label">Enter text to analyze:</label>
+                <textarea class="form-control" id="text" name="text" rows="4" required>{% if text %}{{ text }}{% endif %}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Analyze Sentiment (1 credit)</button>
+        </form>
+    </div>
+</div>
+
+{% if result %}
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Analysis Result</h5>
+                <p><strong>Sentiment:</strong> 
+                    <span class="badge {% if result.label == 'POSITIVE' %}bg-success{% elif result.label == 'NEGATIVE' %}bg-danger{% else %}bg-secondary{% endif %}">
+                        {{ result.label }}
+                    </span>
+                </p>
+                <p><strong>Confidence:</strong> {{ "%.2f"|format(result.score * 100) }}%</p>
+                <p><strong>Credits remaining:</strong> {{ current_user.credits }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+<!-- sentiment-saas/templates/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded">
+    <h1 class="display-4">AI-Powered Sentiment Analysis</h1>
+    <p class="lead">Analyze text sentiment with our advanced AI technology. Get started today with 100 free credits!</p>
+    <hr class="my-4">
+    <p>Our service uses state-of-the-art natural language processing to detect positive, negative, and neutral sentiment in text.</p>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}" role="button">Sign Up Now</a>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <h3>Easy to Use</h3>
+        <p>Simple web interface and API for seamless integration into your applications.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Accurate Results</h3>
+        <p>Powered by cutting-edge AI models for precise sentiment detection.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Usage Tracking</h3>
+        <p>Monitor your API usage and manage your credits efficiently.</p>
+    </div>
+</div>
+{% endblock %}
